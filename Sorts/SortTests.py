@@ -5,7 +5,9 @@ from Sorts import sorts
 
 
 class SortTests(unittest.TestCase):
-    TESTS = [
+
+    def setUp(self):
+        self.tests = [
             ([], []),
             ([1], [1]),
             ([2, 1], [1, 2]),
@@ -14,8 +16,13 @@ class SortTests(unittest.TestCase):
             ([68, 89, 45, 10, 20], [10, 20, 45, 68, 89])]
 
     def test_bubble_sort(self):
-        for test in SortTests.TESTS:
+        for test in self.tests:
             sorts.bubble_sort(test[0])
+            self.assertEqual(test[0], test[1])
+
+    def test_insertion_sort(self):
+        for test in self.tests:
+            sorts.insertion_sort(test[0])
             self.assertEqual(test[0], test[1])
 
 
