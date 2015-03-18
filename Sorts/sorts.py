@@ -1,3 +1,5 @@
+import random
+
 __author__ = 'Q'
 
 
@@ -77,6 +79,7 @@ def merge_sort(array):
     """
     _merge_sort_aux(array, 0, len(array) - 1)
 
+
 def _merge_sort_aux(array, first, last):
     if first < last:
         middle = (last - first) // 2 + first
@@ -102,3 +105,43 @@ def _merge(array, first, middle, last):
         array[first + i] = temp[i]
 
 
+def quick_sort(array):
+    """
+    Divide and conquer, but do so by picking a pivot value,
+    where one subarray consists of values smaller than the pivot,
+    and the other subarray consists of values larger than the pivot.
+    Using first as pivot
+    :param array:
+    :return:
+    """
+    _quick_sort_aux(array, 0, len(array) - 1)
+    return None
+
+
+def _quick_sort_aux(array, left, right):
+    if left < right:
+        pivot = _partition(array, left, right)
+        _quick_sort_aux(array, left, pivot - 1)
+        _quick_sort_aux(array, pivot + 1, right)
+    return
+
+
+def _partition(array, left, right):
+    pivot = left
+    low = left
+    high = right - 1  # for pivot
+    pivot_value = array[pivot]
+    array[pivot] = array[right]
+    while low <= high:
+        # Find the next element lower than the pivot
+        while low <= high and array[low] < pivot_value:
+            low += 1
+        # Find the next element higher than the pivot
+        while low <= high and array[high] >= pivot_value:
+            high -= 1
+        # If the high index is higher than the low index swap them.
+        if low <= high:
+            array[low], array[high] = array[high], array[low]
+    array[right] = array[low]  # Shifts the higher element to the end
+    array[low] = pivot_value  # put the pivot in the mid point
+    return low
