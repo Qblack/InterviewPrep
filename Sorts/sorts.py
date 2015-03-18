@@ -1,7 +1,17 @@
 __author__ = 'Q'
 
 
+def swap(array, j, k):
+    temp = array[j]
+    array[j] = array[k]
+    array[k] = temp
+
+
 def bubble_sort(array):
+    """
+    O(n^2)
+    :param array:
+    """
     n = len(array)
 
     swapped = True
@@ -15,21 +25,18 @@ def bubble_sort(array):
             i += 1
 
 
-
-def swap(array, j, k):
-    temp = array[j]
-    array[j] = array[k]
-    array[k] = temp
-
-
 def insertion_sort(array):
+    """
+    O(n^2)
+    :param array:
+    """
     n = len(array)
     i = 1
     while i < n:
         if array[i - 1] > array[i]:
             j = i
-            while array[j-1] > array[j] and j > 0:
-                swap(array, j-1, j)
+            while array[j - 1] > array[j] and j > 0:
+                swap(array, j - 1, j)
                 j -= 1
         i += 1
 
