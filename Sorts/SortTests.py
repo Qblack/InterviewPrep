@@ -30,6 +30,11 @@ class SortTests(unittest.TestCase):
             sorts.selection_sort(test[0])
             self.assertEqual(test[0], test[1])
 
+    def test_merge_sort(self):
+        for test in self.tests:
+            sorts.merge_sort(test[0])
+            self.assertEqual(test[0], test[1])
+
 
 if __name__ == '__main__':
     unittest.main()

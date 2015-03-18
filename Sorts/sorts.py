@@ -68,5 +68,37 @@ def selection_sort(array):
         i += 1
 
 
+def merge_sort(array):
+    """
+    Divide and conquer. Split an array up into smaller arrays, sort the smaller arrays,
+    merge the smaller arrays, in order, back into the big array. Splitting the subarrays
+    is done recursively, merging is done iteratively.
+    :param array:
+    """
+    _merge_sort_aux(array, 0, len(array) - 1)
+
+def _merge_sort_aux(array, first, last):
+    if first < last:
+        middle = (last - first) // 2 + first
+        _merge_sort_aux(array, first, middle)
+        _merge_sort_aux(array, middle + 1, last)
+        _merge(array, first, middle, last)
+
+
+def _merge(array, first, middle, last):
+    temp = []
+    i = first
+    j = middle + 1
+    while i <= middle and j <= last:
+        if array[i] <= array[j]:
+            temp.append(array[i])
+            i += 1
+        else:
+            temp.append(array[j])
+            j += 1
+    [temp.append(array[index]) for index in range(i, middle + 1)]
+    [temp.append(array[index]) for index in range(j, last + 1)]
+    for i in range(len(temp)):
+        array[first + i] = temp[i]
 
 
